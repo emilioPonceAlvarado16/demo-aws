@@ -1,10 +1,6 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import styles from '../styles/Home.module.css'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import Card from '../src/components/card/Card'
 import ContactList from '../src/components/contactList/ContactList'
 import Header from '../src/components/header/Header';
 export default function Home() {

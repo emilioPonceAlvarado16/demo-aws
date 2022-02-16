@@ -2,42 +2,43 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
-import Header from '../src/components/header'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-
+import Card from '../src/components/card/Card'
+import ContactList from '../src/components/contactList/ContactList'
+import Header from '../src/components/header/Header';
 export default function Home() {
+  const hola = [
+    {
+      name: "isaias",
+      apellido: "ponce",
+      email: "ieponce@espol.edu.ec"
+    },
 
+    {
+      name: "madara",
+      apellido: "rikudou",
+      email: "chidori@espol.edu.ec"
+    },
+
+
+  ]
   const [registros, setRegistros] = useState([]);
   const [reload, setReload] = useState(0);
+
   useEffect(() => {
     console.debug('Obteniendo datos de usuarios');
-
-    axios.get('https://9q8rgh6rnf.execute-api.us-east-1.amazonaws.com/prod/contacts')
+    setRegistros([])
+    var URL = "https://f3s91itbb5.execute-api.us-east-2.amazonaws.com/dev/contacts"
+    axios.get(URL)
     .then((response) => {
       if (response.status === 200) {
-        setRegistros(response.data);
+        console.log(response)
+        setRegistros(JSON.parse(response.data.body));
       }
     });
   }, [reload]);
 
-  let component;
-
-  if (registros.length === 0) {
-    component = <div>
-      No existen registros disponibles.
-    </div>;
-  } else {
-    component = registros.map((contacto, index) => {
-      return (
-        <div key={`contacto-${index}`}>
-          <div className="column is-quarter">{contacto.nombre}</div>
-          <div className="column is-quarter">{contacto.apellido}</div>
-          <div className="column is-half">{contacto.email}</div>
-        </div>
-      );
-    })
-  }
 
   return (
     <div className="container">
@@ -48,27 +49,29 @@ export default function Home() {
       </Head>
 
       <main>
-        <Header title="Agenda" subtitle="Presiona el botón para agregar un nuevo contacto." />
+        <Header  />
 
         <form>
-          <div className="columns is-multiline">
-            {component}
+          <div className='d-flex justify-content-center' style={{padding:"3%"}}>
+
+
+       <ContactList list={registros}/>
           </div>
 
-          <div>
-            <Link href="/add-contact">
-              <a className="button is-large is-link">Agregar +</a>
-            </Link>
+          <div className='d-flex justify-content-center'>
 
-            <button type="submit" className="button is-large is-danger" onClick={(event) => {
+           
+            <button type="submit" className=" btn btn-danger" onClick={(event) => {
               event.preventDefault();
               setReload(reload + 1);
             }}>
               Reload *
             </button>
           </div>
+
         </form>
-        
+
+
       </main>
     </div>
   )

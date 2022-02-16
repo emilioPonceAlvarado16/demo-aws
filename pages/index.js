@@ -4,21 +4,21 @@ import { useState, useEffect } from 'react';
 import ContactList from '../src/components/contactList/ContactList'
 import Header from '../src/components/header/Header';
 export default function Home() {
-  const hola = [
-    {
-      name: "isaias",
-      apellido: "ponce",
-      email: "ieponce@espol.edu.ec"
-    },
+  // const hola = [
+  //   {
+  //     name: "isaias",
+  //     apellido: "ponce",
+  //     email: "ieponce@espol.edu.ec"
+  //   },
 
-    {
-      name: "madara",
-      apellido: "rikudou",
-      email: "chidori@espol.edu.ec"
-    },
+  //   {
+  //     name: "madara",
+  //     apellido: "rikudou",
+  //     email: "chidori@espol.edu.ec"
+  //   },
 
 
-  ]
+  // ]
   const [registros, setRegistros] = useState([]);
   const [reload, setReload] = useState(0);
 

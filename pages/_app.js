@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import "../node_modules/bulma"
 import Head from 'next/head'
 function MyApp({ Component, pageProps }) {
   return (

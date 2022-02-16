@@ -29,6 +29,7 @@ export default function Contactform() {
         .then((response) => {
             console.debug(response);
             setLoading(false);
+            setIsSent(true);
         })
         
     }

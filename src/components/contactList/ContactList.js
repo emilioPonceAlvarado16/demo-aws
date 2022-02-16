@@ -21,7 +21,7 @@ export default function ContactList(props) {
                             list.map((contacto, index) => {
                                 return (
 
-                                    <Card key={index} name={contacto.name} lastname={contacto.apellido} email={contacto.email} />
+                                    <Card key={index} name={contacto.nombre} lastname={contacto.apellido} email={contacto.email} />
 
                                 );
                             })}
